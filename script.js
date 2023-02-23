@@ -23,6 +23,11 @@ function onReady() {
     $('.attack-btn.arcane-sceptre').on('click', arcaneReduceHpAp);
 
     // Add event handling for the 'entangle' button
+    $('.attack-btn.entangle').on('click', entangleReduceHpAp);
+
+    $('.attack-btn.dragon-blade').on('click', dbReduceHpAp);
+
+    $('.attack-btn.star-fire').on('click', sfReduceHpAp);
 }
 
 function arcaneReduceHpAp() {
@@ -31,18 +36,57 @@ function arcaneReduceHpAp() {
     myAP-=12;
     console.log('Current fungus HP:', fungusHP);
     console.log('Current myAP:', myAP);
-    // $('.hp-text').html(`
-    //     <div class="hp-text">${fungusHP} HP</div>
-    //  `);
-    // $('.ap-text').html(`
-    //     <div class="ap-text">${myAP} AP</div>
-    //  `);
-    // if (fungusHP === 2) {
-    //     fungusHP = 0;
-    // }
-    // if (myAP === 4) {
-    //     myAP = 0;
-    // }
+    if (fungusHP <= 0) {
+        fungusHP = 0;
+    }
+    if (myAP <= 0) {
+        myAP = 0;
+    }
+    render()
+}
+
+function entangleReduceHpAp() {
+    console.log('Inside entangle button');
+    fungusHP-=9;
+    myAP-=23;
+    console.log('Current fungus HP:', fungusHP);
+    console.log('Current myAP:', myAP);
+    if (fungusHP <= 0) {
+        fungusHP = 0;
+    }
+    if (myAP <= 0) {
+        myAP = 0;
+    }
+    render()
+}
+
+function dbReduceHpAp() {
+    console.log('Inside dbReduceHpAp button');
+    fungusHP-=47;
+    myAP-=38;
+    console.log('Current fungus HP:', fungusHP);
+    console.log('Current myAP:', myAP);
+    if (fungusHP <= 0) {
+        fungusHP = 0;
+    }
+    if (myAP <= 0) {
+        myAP = 0;
+    }
+    render()
+}
+
+function sfReduceHpAp() {
+    console.log('Inside sfReduceHpAp button');
+    fungusHP-=25;
+    myAP-=33;
+    console.log('Current fungus HP:', fungusHP);
+    console.log('Current myAP:', myAP);
+    if (fungusHP <= 0) {
+        fungusHP = 0;
+    }
+    if (myAP <= 0) {
+        myAP = 0;
+    }
     render()
 }
 
@@ -53,10 +97,13 @@ function render() {
     $('.ap-text').html(`
         <div class="ap-text">${myAP} AP</div>
      `);
-    if (fungusHP <= 0) {
-        fungusHP = 0;
+    if (fungusHP === 0) {
+        $('.freaky-fungus.walk').replaceWith('<div class="freaky-fungus dead"></div>')
     }
-    if (myAP <= 0) {
-        myAP = 0;
+    else if (myAP === 0) {
+        $('.freaky-fungus.walk').replaceWith('<div class="freaky-fungus jump"></div>')
+    }
+    if (myAP === 0) {
+        $('.attack-btn').replaceWith()
     }
 }
